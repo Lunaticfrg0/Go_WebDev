@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        {{$whereToStream := .WhereToStream}}
+        <p>Stream Radical Optimism by Dua Lipa in {{$whereToStream}}</p>
+        <br>
+        <p>The album includes: </p>
+        <ul>
+	        {{range .SongsList}}
+	        <li>
+	         {{.}}
+	        </li>
+	        {{end}}
+	    </ul>
+    </body>
+</html>
