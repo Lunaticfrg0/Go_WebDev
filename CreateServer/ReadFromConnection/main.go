@@ -28,17 +28,18 @@ func main() {
 
 func handle(conn net.Conn) {
 
-	err := conn.SetDeadline(time.Now().Add(10 * time.Second))
-	if err != nil {
-		log.Println("Conn timeout")
-	}
-
 	scanner := bufio.NewScanner(conn)
 
 	for scanner.Scan() {
+
+		err := conn.SetDeadline(time.Now().Add(10 * time.Second))
+		if err != nil {
+			log.Println("Conn timeout")
+		}
 		ln := scanner.Text()
 		fmt.Println(ln)
 		fmt.Fprintf(conn, "I heard you say: %s \n", ln)
+
 	}
 
 	defer conn.Close()
